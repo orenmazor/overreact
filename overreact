@@ -1,0 +1,14 @@
+#!/bin/bash
+set -x
+
+# delete the cache
+find /var/folders/ -name 'react-packager-cache-*' 2>/dev/null | xargs rm
+
+# run the local packager
+if [ -e "./node_modules/react-native/packager/launchPackager.command" ]
+then
+  exec ./node_modules/react-native/packager/launchPackager.command
+else
+  echo "packager does not exists. are you in a react environment?"
+fi
+
